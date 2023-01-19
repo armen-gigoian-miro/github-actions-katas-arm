@@ -5,10 +5,13 @@ on: [push]
 jobs:
   build:
 
-    runs-on: gradle:6-jdk11
-
+    runs-on: ubuntu-latest
+    container: gradle:6-jdk11
+    
     steps:
       - name: Clone-down
         uses: actions/checkout@v3
       - name: Run Build
         run: ci/build-app.sh
+      - name: Test
+        run: ci/unit-test-app.sh
